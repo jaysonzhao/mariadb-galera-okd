@@ -6,7 +6,7 @@ export WSREP_NEW_CLUSTER=""
 export NODE_LIST=""
 let NODE_COUNT=0
 
-CLUSTER_SERVICE="${SERVICE_NAME}.${NAMESPACE}.svc.cluster.local"
+CLUSTER_SERVICE=$(echo $GALERACLUSTER | tr ";" "\n")
 let j=0
 for i in $(dig ${CLUSTER_SERVICE} +short)
 do

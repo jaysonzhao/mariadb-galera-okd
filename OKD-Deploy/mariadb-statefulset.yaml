@@ -7,7 +7,7 @@ metadata:
 spec:
   serviceName: galera-cluster
   podManagementPolicy: "OrderedReady"
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: mariadb-galera
@@ -37,11 +37,13 @@ spec:
               topologyKey: kubernetes.io/hostname
       containers:
       - name: mariadb-galera
-        image: docker-registry.default.svc:5000/openshift/mariadb-galera:10.4
+        image: quay.io/jaysonzhao/galera:v1 
         imagePullPolicy: IfNotPresent 
         env:
         - name: SERVICE_NAME
           value: galera-cluster
+        - name: GALERACLUSTER
+          value: "" 
         - name: POD_IP
           valueFrom:
             fieldRef:
